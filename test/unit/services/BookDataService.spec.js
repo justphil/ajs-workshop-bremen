@@ -60,21 +60,44 @@ describe('Service: BookDataService', function() {
 
   describe('getBookByIsbn()', function() {
     it('should return a copy of a book', function() {
-      var book1 = BookDataService.getBookByIsbn('111-111-111');
-      var book2 = BookDataService.getBookByIsbn('111-111-111');
+      var book1, book2;
+
+      BookDataService.getBookByIsbn('111-111-111').then(function(b) {
+        book1 = b;
+      });
+
+      BookDataService.getBookByIsbn('111-111-111').then(function(b) {
+        book2 = b;
+      });
+
+      $rootScope.$apply();
+
       expect(book1).not.toBe(book2)
     });
 
     it('should return the corresponding book object', function() {
-      var book = BookDataService.getBookByIsbn('111-111-111');
+      var book;
+
+      BookDataService.getBookByIsbn('111-111-111').then(function(b) {
+        book = b;
+      });
+
+      $rootScope.$apply();
+
       expect(book).toBeDefined();
       expect(isBook(book)).toBe(true);
     });
 
     it('should throw an exception in case of not available isbn', function() {
-      expect(function() {
-        BookDataService.getBookByIsbn('not-available');
-      }).toThrow();
+      var error;
+
+      BookDataService.getBookByIsbn('not-available').catch(function(err) {
+        error = err;
+      });
+
+      $rootScope.$apply();
+
+      expect(error).toBeDefined();
     });
   });
 

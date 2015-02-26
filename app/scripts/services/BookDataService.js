@@ -33,10 +33,10 @@ angular.module('mevisApp').factory('BookDataService', function ($q, $timeout) {
     });
 
     if (filteredBooks.length > 0) {
-      return angular.copy(filteredBooks[0]);
+      return $q.when(angular.copy(filteredBooks[0]));
     }
 
-    throw new Error('Book with isbn "' + isbn + '" not found!');
+    return $q.reject(new Error('Book with isbn "' + isbn + '" not found!'));
   }
 
   // revealing API

@@ -1,10 +1,12 @@
-angular.module('mevisApp').controller('BookDetailsCtrl', function($scope) {
+angular.module('mevisApp').controller('BookDetailsCtrl', function($scope, $location, $routeParams, BookDataService) {
 
-  $scope.book = {
-    title: "JavaScript für Enterprise-Entwickler",
-    subtitle: "Professionell programmieren im Browser und auf dem Server",
-    isbn: "111-111-111",
-    author: 'test'
-  };
+  var isbn = $routeParams.isbn;
+
+  BookDataService.getBookByIsbn(isbn).then(function(b) {
+    $scope.book = b;
+  }).catch(function(error) {
+    console.log('an error occurred', error);
+    $location.path('/books');
+  });
 
 });
