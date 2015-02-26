@@ -10,11 +10,15 @@
 <body>
   <div class="container" ng-controller="ColorPickerCtrl">
 
-    <color-picker init-r="r" init-g="g" init-b="b"></color-picker>
+
+
+    <color-picker init-r="255"
+                  init-g="0"
+                  init-b="0"
+                  on-color-change-attribute="onColorChange(r,g,b)"></color-picker>
 
       <br><br>
       Controller: R -> {{r}} G -> {{g}} B -> {{b}}
-      <button ng-click="increase()">Increase!</button>
 
   </div>
 
