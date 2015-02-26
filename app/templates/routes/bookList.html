@@ -9,6 +9,7 @@
             <th>Subtitle</th>
             <th>Author</th>
             <th>ISBN</th>
+            <th>Delete</th>
         </tr>
     </thead>
 
@@ -18,6 +19,14 @@
             <td>{{book.subtitle}}</td>
             <td>{{book.author}}</td>
             <td>{{book.isbn}}</td>
+            <td><button ng-click="delete(book)" class="button">Delete</button></td>
         </tr>
     </tbody>
 </table>
+
+<message-dialog visible="dialogVisible"
+                title="dialogTitle"
+                on-yes="performDeletion()"
+                on-no="cancelDeletion()">
+    Wollen Sie das Buch &quot;{{ bookToDelete.title }}&quot; wirklich löschen?
+</message-dialog>
