@@ -39,6 +39,24 @@ angular.module('mevisApp').factory('BookDataService', function ($q, $timeout) {
     return $q.reject(new Error('Book with isbn "' + isbn + '" not found!'));
   }
 
+  function _deleteBookByIsbn(isbn) {
+    var indexToDelete = -1;
+    var i = books.length;
+    while (i--) {
+      if (isbn == books[i].isbn) {
+        indexToDelete = i;
+        break;
+      }
+    }
+
+    if (indexToDelete != -1) {
+      books.splice(i, 1);
+      return $q.when(true);
+    } else {
+      return $q.when(false);
+    }
+  }
+
   // revealing API
   return {
     getAllBooks: function() {
@@ -46,6 +64,9 @@ angular.module('mevisApp').factory('BookDataService', function ($q, $timeout) {
     },
     getBookByIsbn: function(isbn) {
       return _getBookByIsbn(isbn);
+    },
+    deleteBookByIsbn: function(isbn) {
+      return _deleteBookByIsbn(isbn);
     }
   };
 });

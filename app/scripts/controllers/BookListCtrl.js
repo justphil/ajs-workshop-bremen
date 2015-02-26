@@ -14,7 +14,19 @@ angular.module('mevisApp').controller('BookListCtrl', function($scope, BookDataS
   };
 
   $scope.performDeletion = function() {
-    console.log('performDeletion!');
+    BookDataService.deleteBookByIsbn($scope.bookToDelete.isbn)
+      .then(function(result) {
+        if (result) {
+          return result;
+        } else {
+          throw new Error('Book could not be deleted!');
+        }
+      })
+      .then(performLocalDeletion)
+      .catch(function(error) {
+        console.log('an error occurred', error);
+      })
+      .finally($scope.cancelDeletion);
   };
 
   $scope.cancelDeletion = function() {
@@ -23,5 +35,12 @@ angular.module('mevisApp').controller('BookListCtrl', function($scope, BookDataS
     delete $scope.dialogTitle;
     delete $scope.bookToDelete;
   };
+
+  function performLocalDeletion() {
+    var bookToDeleteIndex = $scope.books.indexOf($scope.bookToDelete);
+    if (bookToDeleteIndex != -1) {
+      $scope.books.splice(bookToDeleteIndex, 1);
+    }
+  }
 
 });

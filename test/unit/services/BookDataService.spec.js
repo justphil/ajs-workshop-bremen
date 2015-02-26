@@ -20,6 +20,10 @@ describe('Service: BookDataService', function() {
     it('should contain a getBookByIsbn() function', function() {
       expect(angular.isFunction(BookDataService.getBookByIsbn)).toBe(true);
     });
+
+    it('should contain a deleteBookByIsbn() function', function() {
+      expect(angular.isFunction(BookDataService.deleteBookByIsbn)).toBe(true);
+    });
   });
 
   describe('getAllBooks()', function() {
@@ -98,6 +102,32 @@ describe('Service: BookDataService', function() {
       $rootScope.$apply();
 
       expect(error).toBeDefined();
+    });
+  });
+
+  describe('deleteBookByIsbn()', function() {
+    it('should properly delete a book object', function() {
+      var isbnToDelete = '111-111-111';
+      var isBook, deleted;
+
+      BookDataService.getBookByIsbn(isbnToDelete).then(function(book) {
+        isBook = angular.isDefined(book);
+      });
+      $rootScope.$apply();
+      expect(isBook).toBe(true);
+
+      BookDataService.deleteBookByIsbn(isbnToDelete).then(function(result) {
+        deleted = result;
+      });
+      $rootScope.$apply();
+      expect(deleted).toBe(true);
+
+      var bookNotAvailable;
+      BookDataService.getBookByIsbn(isbnToDelete).catch(function(error) {
+        bookNotAvailable = angular.isDefined(error);
+      });
+      $rootScope.$apply();
+      expect(bookNotAvailable).toBe(true);
     });
   });
 
