@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="mevisApp">
 <head>
   <meta charset="utf-8">
   <title>myApp</title>
@@ -10,14 +10,25 @@
 <body>
   <div class="container">
 
-    <h1>Hello {{ name }}!</h1>
-    <input type="text" ng-model="name" />
+    <color-picker init-r="255" init-g="0" init-b="0"></color-picker>
+    <color-picker init-r="0" init-g="255" init-b="0"></color-picker>
+    <color-picker init-r="0" init-g="0" init-b="255"></color-picker>
 
   </div>
+
+
   <!-- 3rd-Party Libs -->
+  <!--
   <script src="bower_components/jquery/dist/jquery.js"></script>
+  -->
   <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
+  <!--
+    <script src="bower_components/angular-route/angular-route.js"></script>
+  -->
+
   <!-- Application Files -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/directives/colorPicker.js"></script>
+
 </body>
 </html>
