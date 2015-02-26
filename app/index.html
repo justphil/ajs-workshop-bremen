@@ -8,19 +8,12 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container" ng-controller="ColorPickerCtrl">
 
 
-
-    <color-picker init-r="255"
-                  init-g="0"
-                  init-b="0"
-                  on-color-change-attribute="onColorChange(r,g,b)"></color-picker>
-
-      <br><br>
-      Controller: R -> {{r}} G -> {{g}} B -> {{b}}
-
+  <div class="container" ng-view>
   </div>
+
+
 
 
   <!-- 3rd-Party Libs -->
@@ -28,14 +21,18 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
-  <!--
-    <script src="bower_components/angular-route/angular-route.js"></script>
-  -->
+  <script src="bower_components/angular-route/angular-route.js"></script>
+
 
   <!-- Application Files -->
     <script src="scripts/app.js"></script>
     <script src="scripts/directives/colorPicker.js"></script>
+    <script src="scripts/services/BookDataService.js"></script>
     <script src="scripts/controllers/ColorPickerCtrl.js"></script>
+    <script src="scripts/controllers/RootCtrl.js"></script>
+    <script src="scripts/controllers/BookDetailsCtrl.js"></script>
+    <script src="scripts/controllers/BookListCtrl.js"></script>
+    <script src="scripts/_configs/routeConfig.js"></script>
 
 </body>
 </html>
