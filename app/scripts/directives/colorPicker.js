@@ -5,9 +5,9 @@ angular.module('mevisApp').directive('colorPicker', function() {
     restrict: 'E', // E = element / tag
     templateUrl: 'templates/directives/colorPickerTemplate.html',
     scope: {
-      r: '@initR',
-      g: '@initG',
-      b: '@initB'
+      rot: '=initR',
+      gruen: '=initG',
+      blau: '=initB'
     },
     link: function() {
       console.log('colorPicker instance created!');

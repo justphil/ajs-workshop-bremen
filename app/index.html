@@ -8,11 +8,13 @@
   <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container" ng-controller="ColorPickerCtrl">
 
-    <color-picker init-r="255" init-g="0" init-b="0"></color-picker>
-    <color-picker init-r="0" init-g="255" init-b="0"></color-picker>
-    <color-picker init-r="0" init-g="0" init-b="255"></color-picker>
+    <color-picker init-r="r" init-g="g" init-b="b"></color-picker>
+
+      <br><br>
+      Controller: R -> {{r}} G -> {{g}} B -> {{b}}
+      <button ng-click="increase()">Increase!</button>
 
   </div>
 
@@ -29,6 +31,7 @@
   <!-- Application Files -->
     <script src="scripts/app.js"></script>
     <script src="scripts/directives/colorPicker.js"></script>
+    <script src="scripts/controllers/ColorPickerCtrl.js"></script>
 
 </body>
 </html>
