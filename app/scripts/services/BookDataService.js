@@ -1,4 +1,4 @@
-angular.module('mevisApp').factory('BookDataService', function () {
+angular.module('mevisApp').factory('BookDataService', function ($q, $timeout) {
 
   // private stuff
   var books = [
@@ -24,13 +24,28 @@ angular.module('mevisApp').factory('BookDataService', function () {
 
   // private impl.
   function _getAllBooks() {
-    return angular.copy(books);
+    return $q.when(angular.copy(books));
+  }
+
+  function _getBookByIsbn(isbn) {
+    var filteredBooks = books.filter(function(b) {
+      return b.isbn == isbn;
+    });
+
+    if (filteredBooks.length > 0) {
+      return angular.copy(filteredBooks[0]);
+    }
+
+    throw new Error('Book with isbn "' + isbn + '" not found!');
   }
 
   // revealing API
   return {
     getAllBooks: function() {
       return _getAllBooks();
+    },
+    getBookByIsbn: function(isbn) {
+      return _getBookByIsbn(isbn);
     }
   };
 });
