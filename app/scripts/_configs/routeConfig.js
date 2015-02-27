@@ -6,6 +6,9 @@ angular.module('mevisApp').config(function($routeProvider) {
   }).when('/books/:isbn', {
     templateUrl: 'templates/routes/bookDetails.html',
     controller: 'BookDetailsCtrl'
+  }).when('/newbook', {
+    templateUrl: 'templates/routes/newBook.html',
+    controller: 'NewBookCtrl'
   }).when('/books', {
     templateUrl: 'templates/routes/bookList.html',
     controller: 'BookListCtrl'
